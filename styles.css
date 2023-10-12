@@ -1,0 +1,14 @@
+body{
+	background-color: lightgray;
+}
+
+h1{
+	text-align: center;
+}
+.container{
+	padding-left: 2%;
+}
+btn:hover{
+	cursor: pointer;
+	color: gray;
+}
