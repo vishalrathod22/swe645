@@ -14,11 +14,11 @@ pipeline {
         stage('BuildWAR') {
             steps {
             
-            	// dir('src/main/webapp') {
+            	dir('src/main/webapp') {
             		echo 'Creating the Jar ...'
 					sh 'java -version'
 					sh 'jar -cvf swe645.war *'
-            	// }
+            	}
             }
         }
         
