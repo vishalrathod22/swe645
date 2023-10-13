@@ -25,7 +25,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("vishal77/swe645:${env.BUILD_ID}")
+                    myapp = docker.build("vishal77/docker645:${env.BUILD_ID}")
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline {
 			steps{
 				sh 'kubectl config view'
 				sh "kubectl get deployments"
-				sh "kubectl set image deployment/swe645deployment container-0=vishal77/swe645:${env.BUILD_ID}"
+				sh "kubectl set image deployment/swe645deployment container-0=vishal77/docker645:${env.BUILD_ID}"
 			}
 		}
     }    
