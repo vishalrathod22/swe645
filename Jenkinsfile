@@ -4,13 +4,14 @@ pipeline {
             image 'vishal77/docker645:latest'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
-    }
-    agent any
+    
+    // agent any
     environment {
         PROJECT_ID = 'rancher'
         CLUSTER_NAME = 'rancher'
         LOCATION = 'us-east-1a'
     }
+	}
     stages {
         stage("Checkout code") {
             steps {
