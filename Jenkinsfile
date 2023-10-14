@@ -1,10 +1,4 @@
 pipeline {
-	// agent {
- //        docker {
- //            image 'vishal77/docker645:latest'
- //            args '-v /var/run/docker.sock:/var/run/docker.sock'
- //        }
-    
     agent any
     environment {
         PROJECT_ID = 'rancher'
