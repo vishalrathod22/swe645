@@ -1,11 +1,11 @@
 pipeline {
-	agent {
-        docker {
-            image 'vishal77/docker645:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+	// agent {
+ //        docker {
+ //            image 'vishal77/docker645:latest'
+ //            args '-v /var/run/docker.sock:/var/run/docker.sock'
+ //        }
     
-    // agent any
+    agent any
     environment {
         PROJECT_ID = 'rancher'
         CLUSTER_NAME = 'rancher'
