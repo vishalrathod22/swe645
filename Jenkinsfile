@@ -13,12 +13,12 @@ pipeline {
         }
         stage('BuildWAR') {
             steps {
-            		echo 'Creating the Jar ...'
-					sh 'java -version'
-					sh 'jar -cvf swe645.war -C src/main/webapp .'
-            	}
+                echo 'Creating the Jar ...'
+                sh 'java -version'
+                sh 'jar -cvf swe645.war -C src/main/webapp .'
+            }
         }
-        
+
         stage("Build image") {
             steps {
                 script {
@@ -29,17 +29,17 @@ pipeline {
         stage("Push image") {
             steps {
                 script {
-                	sh 'docker login -u vishal77 -p Vanitha%12'
-					myapp.push("${env.BUILD_ID}")
+                    sh 'docker login -u vishal77 -p Vanitha%12'
+                    myapp.image("${env.BUILD_ID}").push()
                 }
             }
-        }        
+        }
         stage("UpdateDeployment") {
-			steps{
-				sh 'kubectl config view'
-				sh "kubectl get deployments"
-				sh "kubectl set image deployment/rancher container-0=vishal77/docker645:${env.BUILD_ID}"
-			}
-		}
-    }    
+            steps {
+                sh 'kubectl config view'
+                sh 'kubectl get deployments'
+                sh "kubectl set image deployment/rancher container-0=vishal77/docker645:${env.BUILD_ID}"
+            }
+        }
+    }
 }
