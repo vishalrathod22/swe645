@@ -5,7 +5,6 @@ pipeline {
         CLUSTER_NAME = 'rancher'
         LOCATION = 'us-east-1a'
     }
-	}
     stages {
         stage("Checkout code") {
             steps {
