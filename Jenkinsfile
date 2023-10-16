@@ -32,10 +32,8 @@ pipeline {
     
         stage("UpdateDeployment") {
             steps {
-                sh 'kubectl config view'
-                sh 'kubectl get deployments'
-                sh "kubectl set image deployment/rancher container-0=vishal77/docker645:${env.BUILD_ID}"
-            }
+					sh 'kubectl rollout restart deploy swedeploy'
+	    }
         }
     }
 }
