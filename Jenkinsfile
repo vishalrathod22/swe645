@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'Creating the Jar ...'
                 sh 'java -version'
-                sh 'jar -cvf swe645.war -C src/main/webapp .'
+                sh 'jar -cvf swe645.war -C src/main/webapps .'
             }
         }
 
