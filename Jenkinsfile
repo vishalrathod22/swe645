@@ -22,7 +22,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("vishal77/docker645:${env.BUILD_ID}")
+                    myapp = docker.build("vishal77/docker645:latest${env.BUILD_ID}")
                 }
             }
         }
@@ -30,7 +30,8 @@ pipeline {
             steps {
                 script {
                     sh 'docker login -u vishal77 -p Vanitha%12'
-                    myapp.image("${env.BUILD_ID}").push()
+                    myapp.image("vishal77/docker645:latest${env.BUILD_ID}").push()   
+                    // ${env.BUILD_ID}
                 }
             }
         }
