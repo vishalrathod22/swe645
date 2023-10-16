@@ -4,6 +4,7 @@ pipeline {
         PROJECT_ID = 'rancher'
         CLUSTER_NAME = 'rancher'
         LOCATION = 'us-east-1a'
+        DOCKERHUB_PASS = 'Vanitha%12'
     }
     stages {
         stage("Checkout code") {
@@ -15,26 +16,20 @@ pipeline {
             steps {
                 echo 'Creating the Jar ...'
                 sh 'java -version'
+                sh 'rm -rf *.war'
                 sh 'jar -cvf swe645.war -C src/main/webapps .'
+                sh 'docker login -u vishal77 -p ${DOCKERHUB_PASS}'
+				sh 'docker build -t vishal77/swe645 .'
             }
         }
-
-        stage("Build image") {
-            steps {
-                script {
-                    myapp = docker.build("vishal77/docker645:latest${env.BUILD_ID}")
-                }
-            }
-        }
-        stage("Push image") {
-            steps {
-                script {
-                    sh 'docker login -u vishal77 -p Vanitha%12'
-                    myapp.image("vishal77/docker645:latest${env.BUILD_ID}").push()   
-                    // ${env.BUILD_ID}
-                }
-            }
-        }
+		stage("Pushing image to docker"){
+			steps{
+				script{
+					sh 'docker push vishal77/swe645'
+				}
+			}
+		}
+    
         stage("UpdateDeployment") {
             steps {
                 sh 'kubectl config view'
