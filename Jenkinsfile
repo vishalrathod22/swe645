@@ -3,7 +3,7 @@ pipeline {
     environment {
         PROJECT_ID = 'rancher'
         CLUSTER_NAME = 'rancher'
-        LOCATION = 'us-east-1a'
+        LOCATION = 'us-east-1c'
         DOCKERHUB_PASS = 'Vanitha%12'
     }
     stages {
@@ -32,7 +32,7 @@ pipeline {
     
         stage("UpdateDeployment") {
             steps {
-					sh 'kubectl rollout restart deploy swedeploy'
+					sh 'kubectl rollout restart deploy swe645-deploy'
 	    }
         }
     }
