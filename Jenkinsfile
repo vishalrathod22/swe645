@@ -38,7 +38,7 @@ pipeline {
     
         stage("UpdateDeployment") {
             steps {
-					sh 'kubectl rollout restart deploy swe645-deploy'
+					sh 'kubectl rollout restart deploy swe645deploy'
 	    }
         }
     }
